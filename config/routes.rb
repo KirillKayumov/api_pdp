@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       post "users/sign_in", to: "sessions#create"
       post "users/sign_up", to: "registrations#create"
       delete "users/sign_out", to: "sessions#destroy"
+
+      get "users/confirmation", to: "confirmations#show"
     end
 
     devise_for :users, only: %i(omniauth_callbacks), controllers: {
