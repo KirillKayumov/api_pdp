@@ -10,9 +10,9 @@ module V1
     end
 
     def destroy
-      current_user.update(authentication_token: nil)
+      SignOut.call(user: current_user)
 
-      head :no_content
+      render nothing: true, status: :ok
     end
   end
 end

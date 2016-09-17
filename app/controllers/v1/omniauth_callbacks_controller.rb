@@ -1,25 +1,27 @@
 module V1
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    acts_as_token_authentication_handler_for User, only: []
+
     def google_oauth2
-      email = request.env["omniauth.auth"]["info"]["email"]
-      user = User.find_by(email: email)
+      if current_user
+        SSO::SaveIdentity.call(auth_data: auth_data, user: current_user)
 
-      if user
-        user.authentication_token = request.env["omniauth.auth"]["credentials"]["token"]
-        user.save
+        respond_with(current_user)
       else
-        password = Devise.friendly_token
-        user = User.create(
-          email: email,
-          password: password,
-          password_confirmation: password,
-          authentication_token: request.env["omniauth.auth"]["credentials"]["token"],
-          password_set_by_user: false,
-          confirmed_at: Time.current
-        )
-      end
+        user = SSO::AuthenticateUser.call(auth_data: auth_data).user
 
-      respond_with(user, serializer: SessionSerializer)
+        respond_with(user, serializer: SessionSerializer)
+      end
+    end
+
+    private
+
+    def current_user
+      @_current_user ||= User.find_by(authentication_token: request.headers["X-User-Token"])
+    end
+
+    def auth_data
+      request.env["omniauth.auth"]
     end
   end
 end
