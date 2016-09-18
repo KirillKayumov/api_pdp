@@ -4,7 +4,7 @@ module V1
 
     def google_oauth2
       if current_user
-        SSO::SaveIdentity.call(auth_data: auth_data, user: current_user)
+        SSO::Connect.call(auth_data: auth_data, user: current_user)
 
         respond_with(current_user)
       else
@@ -13,6 +13,8 @@ module V1
         respond_with(user, serializer: SessionSerializer)
       end
     end
+
+    alias_method :facebook, :google_oauth2
 
     private
 

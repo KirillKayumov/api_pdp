@@ -5,18 +5,14 @@ module SSO
     delegate :auth_data, to: :context
 
     def call
-      user = create
-      SaveIdentity.call(user: user, auth_data: auth_data)
-
-      context.user = user
+      context.user = create
+      Connect.call(user: context.user, auth_data: auth_data)
     end
 
     private
 
     def create
       User.create(
-        first_name: auth_data["info"]["first_name"],
-        last_name: auth_data["info"]["last_name"],
         email: auth_data["info"]["email"],
         password: password,
         password_confirmation: password,

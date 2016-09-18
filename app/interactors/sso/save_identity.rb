@@ -5,7 +5,7 @@ module SSO
     delegate :auth_data, :user, to: :context
 
     def call
-      context.identity = Identity.create(
+      Identity.create(
         uid: uid,
         provider: provider,
         user: user

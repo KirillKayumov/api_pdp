@@ -246,6 +246,19 @@ Devise.setup do |config|
     provider_ignores_state: true,
     redirect_uri: "postmessage"
 
+  config.omniauth :facebook,
+    ENV.fetch("FACEBOOK_ID"),
+    ENV.fetch("FACEBOOK_SECRET"),
+    lang: "en",
+    provider_ignores_state: true,
+    scope: "user_about_me",
+    info_fields: "email, name, bio",
+    :client_options => {
+      :ssl => {
+        :ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'
+      }
+    }
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

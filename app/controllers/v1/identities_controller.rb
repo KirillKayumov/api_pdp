@@ -4,7 +4,6 @@ module V1
 
     def destroy
       identity.destroy
-      current_user.identities.reload
 
       respond_with current_user
     end

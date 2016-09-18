@@ -5,7 +5,7 @@ module SSO
     delegate :auth_data, to: :context
 
     def call
-      user = find_user_by_identity || find_user_by_email || create_user
+      user = find_user_by_identity || connect || create_user
       user.update(authentication_token: token)
 
       context.user = user
@@ -17,8 +17,8 @@ module SSO
       FindUserByIdentity.call(auth_data: auth_data).user
     end
 
-    def find_user_by_email
-      FindUserByEmail.call(auth_data: auth_data).user
+    def connect
+      Connect.call(auth_data: auth_data).user
     end
 
     def create_user

@@ -5,10 +5,9 @@ module SSO
     delegate :auth_data, to: :context
 
     def call
-      user = User.find_by(email: email)
-      SaveIdentity.call(user: user, auth_data: auth_data) if user
+      context.user ||= User.find_by(email: email)
 
-      context.user = user
+      context.fail! unless context.user
     end
 
     private
