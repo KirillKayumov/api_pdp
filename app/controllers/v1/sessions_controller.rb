@@ -12,7 +12,7 @@ module V1
     def destroy
       SignOut.call(user: current_user)
 
-      render nothing: true, status: :ok
+      respond_with current_user, status: :ok
     end
   end
 end
