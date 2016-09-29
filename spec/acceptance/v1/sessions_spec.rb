@@ -23,4 +23,26 @@ resource "Sessions" do
       expect(response).to be_an_error_representation(:unauthorized, "Invalid email or password.")
     end
   end
+
+  delete "/v1/users/sign_out" do
+    let!(:user) { create :user, email: "user@example.com" }
+
+    header "X-User-Email", "user@example.com"
+    header "X-User-Token", "some_token"
+
+    example "Sign out" do
+      expect(SignOut).to receive(:call).and_call_original
+
+      do_request
+      expect(response_status).to eq(200)
+    end
+
+    context "when token is missed" do
+      header "X-User-Token", ""
+
+      example_request "Sign out" do
+        expect(response_status).to eq(401)
+      end
+    end
+  end
 end
