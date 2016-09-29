@@ -19,7 +19,7 @@ module SSO
     end
 
     def auth_data_class
-      "AuthData::#{auth_data["provider"].classify}".constantize
+      "AuthData::#{auth_data['provider'].classify}".constantize
     end
   end
 end

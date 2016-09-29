@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe ConfirmByToken do
-  let(:context) { { token: "awesome_token"} }
+  let(:context) { { token: "awesome_token" } }
 
   subject(:call) { described_class.call(context) }
 

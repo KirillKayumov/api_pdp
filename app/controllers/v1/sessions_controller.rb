@@ -1,6 +1,6 @@
 module V1
   class SessionsController < Devise::SessionsController
-    skip_before_filter :verify_signed_out_user, only: :destroy
+    skip_before_action :verify_signed_out_user, only: :destroy
 
     wrap_parameters :user
 

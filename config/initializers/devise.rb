@@ -252,12 +252,7 @@ Devise.setup do |config|
     lang: "en",
     provider_ignores_state: true,
     scope: "user_about_me",
-    info_fields: "email, name, bio",
-    :client_options => {
-      :ssl => {
-        :ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'
-      }
-    }
+    info_fields: "email, name, bio"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

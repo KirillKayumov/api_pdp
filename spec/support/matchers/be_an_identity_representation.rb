@@ -1,4 +1,4 @@
-RSpec::Matchers.define :be_a_identity_representation do |user|
+RSpec::Matchers.define :be_a_identity_representation do
   match do |json|
     response_attributes = identity.sliced_attributes %w(
       provider

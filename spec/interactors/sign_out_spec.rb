@@ -11,6 +11,6 @@ describe SignOut do
   subject(:call) { described_class.call(context) }
 
   it "clears authentication token" do
-    expect { call }.to change { user.reload.authentication_token}.from("token").to(nil)
+    expect { call }.to change { user.reload.authentication_token }.from("token").to(nil)
   end
 end
