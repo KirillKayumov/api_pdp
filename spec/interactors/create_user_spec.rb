@@ -4,7 +4,7 @@ describe CreateUser do
   let(:context) do
     {
       params: {
-        email: "kirill.kayumov@flatstack.com",
+        email: "kirill.kayumov@example.com",
         password: "123123",
         password_confirmation: "123123"
       }
