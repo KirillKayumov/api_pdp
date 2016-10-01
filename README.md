@@ -1,15 +1,8 @@
-# Skeleton for new Rails 4 application for REST API
+# API for Social PDP
 
-[![Code Climate](https://codeclimate.com/github/fs/rails-base-api.png)](https://codeclimate.com/github/fs/rails-base-api)
-[![Build Status](https://semaphoreci.com/api/v1/fs/rails-base-api/branches/master/shields_badge.svg)](https://semaphoreci.com/fs/rails-base-api)
-
-This simple application includes ruby/rails technology which we use at FlatStack for new REST API projects.
-
-Application currently based on Rails 4 stable branch and Ruby 2.3.1
-
-## API
-
-Status of the API could be checked at [http://localhost:5000/docs](http://localhost:5000/docs)
+[![Code Climate](https://codeclimate.com/github/KirillKayumov/api_pdp/badges/gpa.svg)](https://codeclimate.com/github/KirillKayumov/api_pdp)
+[![Test Coverage](https://codeclimate.com/github/KirillKayumov/api_pdp/badges/coverage.svg)](https://codeclimate.com/github/KirillKayumov/api_pdp/coverage)
+[![Build Status](https://semaphoreci.com/api/v1/kirill_kayumov/api_pdp/branches/master/shields_badge.svg)](https://semaphoreci.com/kirill_kayumov/api_pdp)
 
 ## What's included
 
@@ -86,56 +79,3 @@ The above usage of `PaginatedArraySerializer` will produce the following:
   ]
 }
 ```
-
-## Quick start
-
-Clone application as new project with original repository named "rails-base-api"
-
-```bash
-git clone git://github.com/fs/rails-base-api.git --origin rails-base-api [MY-NEW-PROJECT]
-```
-
-Create your new repo on GitHub and push master into it.
-Make sure master branch is tracking origin repo.
-
-```bash
-git remote add origin git@github.com:[MY-GITHUB-ACCOUNT]/[MY-NEW-PROJECT].git
-git push -u origin master
-```
-
-Run setup script
-
-```bash
-bin/setup
-```
-
-Make sure all test are green
-
-```bash
-bin/ci
-```
-
-Run app
-
-```bash
-bin/server
-```
-
-**Do not forget to update this file!**
-
-```bash
-mv doc/README_TEMPLATE.md README.md
-# update README.md
-git commit -am "Update README.md"
-```
-
-### Restrict access to documentation
-
-You can enable restrict access to documentation by adding `APITOME_USER` and `APITOME_PASSWORD` environment variables. Can be useful on staging environment.
-
-## Examples
-
-Please check how to build API endpoints and test them properly in the
-[examples branch](https://github.com/fs/rails-base-api/tree/examples)
-
-[<img src="http://www.flatstack.com/logo.svg" width="100"/>](http://www.flatstack.com)
