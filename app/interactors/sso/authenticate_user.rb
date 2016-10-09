@@ -17,8 +17,17 @@ module SSO
       FindUserByIdentity.call(auth_data: auth_data).user
     end
 
+    def find_user_by_email
+      FindUserByEmail.call(auth_data: auth_data).user
+    end
+
     def connect
-      Connect.call(auth_data: auth_data).user
+      user = find_user_by_email
+      return unless user
+
+      result = Connect.call(auth_data: auth_data, user: user)
+      context.fail!(error: result.error) if result.failure?
+      result.user
     end
 
     def create_user

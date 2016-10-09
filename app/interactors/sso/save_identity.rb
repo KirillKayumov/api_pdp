@@ -2,14 +2,14 @@ module SSO
   class SaveIdentity
     include Interactor
 
+    ERROR_MESSAGE = "You have to confirm your email address before continuing."
+
     delegate :auth_data, :user, to: :context
 
     def call
-      Identity.create(
-        uid: uid,
-        provider: provider,
-        user: user
-      )
+      context.fail!(error: ERROR_MESSAGE) unless user.confirmed?
+
+      user.identities.create(uid: uid, provider: provider)
     end
 
     private

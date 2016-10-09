@@ -11,11 +11,5 @@ module V1
 
       respond_with user, serializer: SessionSerializer
     end
-
-    def update
-      UpdateUser.call(user: current_user, params: account_update_params)
-
-      respond_with current_user
-    end
   end
 end

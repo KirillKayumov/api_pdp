@@ -5,7 +5,7 @@ module V1
     def show
       ConfirmByToken.call(token: params[:confirmation_token])
 
-      redirect_to Rails.application.secrets.frontend_url
+      redirect_to Rails.application.secrets.frontend_email_confirmed_url
     end
   end
 end

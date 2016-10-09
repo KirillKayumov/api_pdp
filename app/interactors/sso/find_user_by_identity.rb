@@ -7,7 +7,7 @@ module SSO
     def call
       identity = Identity.find_by(uid: uid, provider: provider)
 
-      context.user = identity.try(:user)
+      context.user = identity.user if identity
     end
 
     private

@@ -10,10 +10,10 @@ Rails.application.routes.draw do
       delete "users/sign_out", to: "sessions#destroy"
 
       get "users/confirmation", to: "confirmations#show"
-      put "users/set_password", to: "passwords#set"
-      put "users/update", to: "registrations#update"
 
       delete "identities/:provider", to: "identities#destroy"
+
+      resource :profile, only: %i(show update)
     end
 
     devise_for :users, only: %i(omniauth_callbacks), controllers: {
