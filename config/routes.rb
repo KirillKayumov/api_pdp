@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
       delete "identities/:provider", to: "identities#destroy"
 
-      resource :profile, only: %i(show update)
+      resource :user, only: %i(show update)
     end
 
     devise_for :users, only: %i(omniauth_callbacks), controllers: {

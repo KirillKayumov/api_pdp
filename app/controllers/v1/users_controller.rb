@@ -1,21 +1,19 @@
 module V1
-  class ProfilesController < ApplicationController
-    wrap_parameters :profile
-
+  class UsersController < ApplicationController
     def show
       respond_with current_user, serializer: ProfileSerializer
     end
 
     def update
-      UpdateUser.call(user: current_user, params: profile_params)
+      UpdateUser.call(user: current_user, params: user_params)
 
       respond_with current_user, serializer: ProfileSerializer
     end
 
     private
 
-    def profile_params
-      params.require(:profile).permit(
+    def user_params
+      params.permit(
         :first_name,
         :last_name,
         :bio,

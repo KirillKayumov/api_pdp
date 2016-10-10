@@ -29,40 +29,4 @@ resource "Registrations" do
       expect(response["rails_api_format/error"]["validations"]["email"]).to include("can't be blank")
     end
   end
-
-  put "/v1/users/update" do
-    header "X-User-Email", "user@example.com"
-    header "X-User-Token", "some_token"
-
-    parameter :first_name, "New name"
-    parameter :current_password, "Current password", required: true
-
-    let!(:user) { create :user, email: "user@example.com" }
-    let(:current_password) { user.password }
-
-    example "Update user with current password" do
-      expect(UpdateUser).to receive(:call).and_call_original
-
-      do_request
-      expect(response_status).to eq 200
-      expect(response["user"]).to be_a_user_representation
-    end
-
-    context "when current password is missed" do
-      let(:current_password) { "" }
-
-      example_request "Update user without current password" do
-        expect(response_status).to eq 422
-        expect(response["rails_api_format/error"]["validations"]["current_password"]).to include("can't be blank")
-      end
-    end
-
-    context "when token is missed" do
-      header "X-User-Token", ""
-
-      example_request "Update user without token" do
-        expect(response_status).to eq 401
-      end
-    end
-  end
 end

@@ -6,6 +6,6 @@ describe UserSerializer do
   let(:user_json) { parse_json(json)["user"] }
 
   it "returns user" do
-    expect(user_json).to be_a_user_representation(user)
+    expect(user_json).to be_a_user_representation
   end
 end

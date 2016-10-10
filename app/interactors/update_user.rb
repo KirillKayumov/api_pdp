@@ -14,7 +14,7 @@ class UpdateUser
   private
 
   def set_password_params
-    password = params["password"]
+    password = params[:password]
 
     {
       password: password,

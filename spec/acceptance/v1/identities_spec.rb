@@ -20,7 +20,7 @@ resource "Identities" do
       expect { do_request }.to change { Identity.count }.by(-1)
 
       expect(response_status).to eq 200
-      expect(response["user"]).to be_a_user_representation
+      expect(response["user"]).to be_a_profile_representation
     end
 
     context "when token is missed" do
